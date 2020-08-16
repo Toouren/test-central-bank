@@ -1,0 +1,16 @@
+<div class="result-table" *ngIf="storage.length">
+    <div class="result-table__wrapper">
+        <div class="result-table__record">
+            <div>Вероятность</div>
+            <div>Количество доменов в решётке</div>
+            <div>Количество ячеек в решётке</div>
+            <div>Количество выбранных ячеек в решётке</div>
+        </div>
+        <div class="result-table__record" *ngFor="let record of storage">
+            <div>{{ record?.probability || '-' }}</div>
+            <div>{{ record?.domainNumber }}</div>
+            <div>{{ record?.polygonNumber }}</div>
+            <div>{{ record?.checkedPolygonNumber }}</div>
+        </div>
+    </div>
+</div>

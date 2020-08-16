@@ -1,0 +1,20 @@
+.grid-form {
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+}
+
+.grid-form__fields {
+    display: flex;
+    width: 600px;
+    justify-content: space-between;
+}
+
+.grid-form__submit-button {
+    margin: 20px auto;
+    width: 200px;
+}
+
+.grid-form__fields input {
+    width: 150px;
+}

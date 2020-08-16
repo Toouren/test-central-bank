@@ -1,0 +1,19 @@
+<div class="main-grid">
+    <div #svgWrapper class="main-grid__svgWrapper"></div>
+    <div *ngIf="isGridInit" class="main-grid__settings-wrap">
+        <form class="main-grid__auto-fill-form" [formGroup]="probabilitySettingForm" (ngSubmit)="onSubmitProbabilitySettingsForm()">
+            <input formControlName="probabilityInput" />
+            <button class="main-grid__auto-fill-button" [disabled]="!probabilitySettingForm.valid">Автозаполнение сетки</button>
+        </form>
+        <div class="main-grid__count-domains-wrapper">
+            <button class="main-grid__count-domains-button" (click)="countDomains()" >Рассчитать количество доменов в сетке</button>
+            <div>Количество доменов: {{ domainNumber }}</div>
+        </div>
+    </div>
+    <div>
+        <result-table></result-table>
+    </div>
+    <div class="main-grid__congif-wrapper">
+        <config-grid-form></config-grid-form>
+    </div>
+</div>

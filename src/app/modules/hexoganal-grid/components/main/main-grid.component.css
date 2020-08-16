@@ -1,0 +1,40 @@
+.main-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-grid__svgWrapper {
+    display: block;
+    width: inherit;
+    height: inherit;
+}
+
+.main-grid__auto-fill-form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 300px;
+}
+
+.main-grid__congif-wrapper {
+    margin: auto;
+}
+
+.main-grid__auto-fill-button,
+.main-grid__count-domains-button {
+    width: 200px;
+    margin: 20px auto;
+}
+
+.main-grid__count-domains-wrapper {
+    width: 400px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.main-grid__settings-wrap {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,9 @@
+.result-table__wrapper {
+    display: grid;
+}
+
+.result-table__record {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
+}

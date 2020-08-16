@@ -1,0 +1,12 @@
+<form class="grid-form" [formGroup]="configForm" (ngSubmit)="onSubmitForm()">
+    <div class="grid-form__fields">
+        <input required type="number" formControlName="lControl" placeholder="Введите значение L" max="30"
+            min="1" />
+        <input required type="number" formControlName="mControl" placeholder="Введите значение M" max="30"
+            min="1" />
+        <input required type="number" formControlName="nControl" placeholder="Введите значение N" max="30"
+            min="1" />
+    </div>
+
+    <button class="grid-form__submit-button" [disabled]="!configForm.valid">Построить сетку</button>
+</form>
