@@ -1,27 +1,50 @@
-# TestCentralBank
+# CentralBankTestTask
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
+## Локальный запуск
 
-## Development server
+`ng serve` для запуска на локалхосте. Доступен по адресу `http://localhost:4200/`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Сборка
 
-## Code scaffolding
+`ng build` для сборки проекта. Собранное приложение будет в папке `dist/`. Для того, чтобы собрать продакшн версию использовать флаг `--prod`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Размещение в сети
 
-## Build
+Любое изменение `master` ветки на гитхабе влечет за собой деплой в heroku. На heroku сервис собирается в директорию `dist/` и размещается по адресу `https://test-central-bank.herokuapp.com/`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Краткое описание
 
-## Running unit tests
+Проект редоставляет из себя сервис, с помощью которого можно построить гексагональную сетку на основе трех параметров L, M, N. Выбрать ячейки в сетке и рассчитать количество доменов (связанных соседством ячеек).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Как пользоваться сервисом
 
-## Running end-to-end tests
+* После загрузки главной страницы, требуется ввести три параметра, для построения сетки. Все параметры должны иметь значения от 1 до 30.
+  ![](https://i.imgur.com/6qyuIXV.png)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+* При нажатии на кнопку "Построить сетку", сетка будет сформирована и проинициализированна неактивными (невыбранными) ячейками. Выбирать ячейка можно нажатием на них. Ячейки, находящиеся в одном домене выделяются одним общим цветом.
+  ![](https://i.imgur.com/evMQVP2.png)
 
-## Further help
+* Под сеткой присутствует поле для ввода вероятности выбора ячейки при формировании автоматической разметки, кнопка, нажатие на которую запускает автоматическую разметку для сетки, а также кнопка, нажатие на которую проведет подсчет доменов в сетке на данный момент времени.
+  ![](https://i.imgur.com/v3Atwus.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* Каждый запуск автоматической разметки, так же как и нажатие кнопки для подсчета доменов добавляет в результирующую таблицу запись, которая содержит основные параметры сетки, которые соответсвует ей в момент подсчета.
+  ![](https://i.imgur.com/vO3QanR.png)
+
+## Архитектура
+
+Весь сервис состоит из двух модулей: `app/app.module.ts` и `hexoganal-grid/hexoganal-grid.module.ts`
+Каждый модуль имеет свой роутинговый модуль.
+
+#### Компоненты:
+
+* `AppComponent` инициализирующий компонент, инициирует отрисовку других компонентов.
+* `MainGridComponent` компонент, содержащий обертку, в которой располагается сетка, компоненту с формой конфигурации сетки и компоненту результирующей таблицы. Явялется основным компонентом сервиса.
+* `ResultTableComponent` компонент, содержащий отображение и логику вывода таблицы с результатами.
+* `ConfigGridFormComponent` компонент, содержащий отображение формы параметров для построения сетки.
+
+### Сервисы:
+
+В приложении реализована три сущности типа сервис - `ResultStorageService`, `HexoganalGridManagerService`, `GridConfigFormManagerService`
+  * `ResultStorageService` - несет ответственность за хранение истории построения сетки и работы с ней.
+  * `HexoganalGridManagerService` - отвечает за корректное поведение сетки: отрисовка, взаимодействие и все рассчеты возложены на этот сервис.
+  * `GridConfigFormManagerService` - отвечает за взаимодействие пользователя с формой параметров для построения сетки, а также управляет данными полученными с этой формы.

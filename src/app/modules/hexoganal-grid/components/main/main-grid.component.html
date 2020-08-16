@@ -2,7 +2,7 @@
     <div #svgWrapper class="main-grid__svgWrapper"></div>
     <div *ngIf="isGridInit" class="main-grid__settings-wrap">
         <form class="main-grid__auto-fill-form" [formGroup]="probabilitySettingForm" (ngSubmit)="onSubmitProbabilitySettingsForm()">
-            <input formControlName="probabilityInput" />
+            <input formControlName="probabilityInput" placeholder="Ввероятность заполнения ячейки значением" />
             <button class="main-grid__auto-fill-button" [disabled]="!probabilitySettingForm.valid">Автозаполнение сетки</button>
         </form>
         <div class="main-grid__count-domains-wrapper">
